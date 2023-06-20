@@ -1,36 +1,34 @@
 'use client'
-import { data } from 'autoprefixer';
+import '../globals.css'
 import { React, useState } from 'react';
-import ReactDOM from 'react-dom';
-import { Input } from '@nextui-org/react';
+export default function Divide() {
+  const [var1, setVar1] = useState(0);
+  const [var2, setVar2] = useState(0);
+  const [result, setResult] = useState(0);
 
-export default function Division() {
-    const [var1, setVar1] = useState(0)
-    const [var2, setVar2] = useState(0)
-    const [result, setResult] = useState(0)
+  const handleVar1Change = (event) => {
+    setVar1(Number(event.target.value));
+  };
 
-    const Divide = () => {
-        setResult(var1 / var2)
-    };
-    const handleVar1Change = () => {
-        setVar1(Number(event.target.value))
-    };
-    const handleVar2Change = () => {
-        setVar2(Number(event.target.value));
-    };
-    return (
-        <div className="container ">
-            <div className="row">
-                <div className="col-6 mt-5">
-                    <Input clearable bordered initialValue="0" onChange={handleVar1Change} />
-                </div>
-                <div className="col-6 mt-5">
-                    <Input clearable bordered initialValue="0" onChange={handleVar2Change} />
-                </div>
-                <button className="mb-5" onClick={Divide}>Divide!</button>
-                <h2>Result:</h2>
-                <h3 >{result}</h3>
-            </div>
+  const handleVar2Change = (event) => {
+    setVar2(Number(event.target.value));
+  };
+
+  const divide = () => {
+    setResult(var1 / var2);
+  };
+
+  return (
+    <div className="flex min-h-screen flex-col items-center justify-between p-24 bg-gradient-to-r from-black to-white">
+      <div className="mr-4 flex flex-col items-center">
+        <button className="command_button" onClick={divide}>Divide!</button>
+        <div>
+          <input className="input" onChange={handleVar1Change} />
+          <input className="input" onChange={handleVar2Change} />
         </div>
-    )
+        <h2 className="text-4xl font-bold tracking-tight text-white mt-12">Result:</h2>
+        <h3 className="text-4xl font-bold tracking-tight text-white">{result}</h3>
+      </div>
+    </div>
+  );
 }
